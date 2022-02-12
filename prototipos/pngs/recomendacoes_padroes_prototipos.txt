@@ -1,0 +1,10 @@
+﻿Nome do software: EstatísticSI 
+
+Fonte: Century Gothic 
+Cor de fonte azul e bordas azuis padrão: #0C61B3
+Demais cores de fonte: Preto (apenas)
+Exemplo de protótipo padrão: perfil_estatisticSI.png
+
+Existe também uma tela com o cabeçalho padrão pronto para uso: layout_telas_estatisticSI.epgz
+
+Botões do sistemas devem sempre ser alinhados a direita.

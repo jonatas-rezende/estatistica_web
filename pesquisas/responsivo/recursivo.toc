@@ -1,0 +1,9 @@
+\select@language {brazil}
+\contentsline {section}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{2}
+\contentsline {section}{\numberline {2}Responsive Web Design}{2}
+\contentsline {subsection}{\numberline {2.1}Tag viewport}{2}
+\contentsline {section}{\numberline {3}J\IeC {\'a} adicionei a meta no meu html, m\IeC {\'a}s o layout n\IeC {\~a}o est\IeC {\'a} visivelmente elegante, e agora? }{3}
+\contentsline {subsection}{\numberline {3.1}Media Query}{3}
+\contentsline {subsection}{\numberline {3.2}Media Query}{4}
+\contentsline {section}{\numberline {4}Conclus\IeC {\~a}o}{5}
+\contentsline {section}{\numberline {5}Refer\IeC {\^e}ncias}{5}

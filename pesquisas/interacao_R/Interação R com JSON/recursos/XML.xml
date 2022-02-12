@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<blog>
+  <nome>zeno rocha - blog</nome>
+  <url>http://blog.zenorocha.com</url>
+  <post>
+    <titulo>do it! - as simple as you can</titulo>
+    <data>13/04/2011</data>
+  </post>
+  <post>
+    <titulo>hello world</titulo>
+    <data>12/04/2011</data>
+  </post>
+</blog>

@@ -1,0 +1,237 @@
+\chapter{Casos de Uso}
+
+\casoDeUso
+%Identificador
+{UC1}
+%Nome
+{Realizar cadastro}
+%Ator Principal
+{Usuário}
+%Interessados
+{
+\begin{itemize}
+	\item Usuário: deseja cadastrar-se no EstatísticaSI.	
+\end{itemize}
+
+}
+%Pré-Condições
+{Ter um e-mail válido.}
+%Pós-condições
+{Dados são enviados para o servidor.}
+%Fluxo Básico
+{
+\begin{itemize}
+	\item Usuário preenche os campos de nome completo, e-mail e senha como mostra a Figura (falta o documento dos protótipos); 
+	\item Usuário clica no botão \textit{“Começar”};	
+	\item O usuário tem acesso a seu perfil.	
+			
+\end{itemize}
+}
+%Fluxo Alternativo
+{
+\begin{itemize}
+	\item Usuário não preenche o campos de nome completo, e-mail ou a senha e precisa ser notificado;
+	\item Eventuais problemas no servidor podem impedir o envio de dados, sendo preciso notificar o usuário sobre;
+	\item Usuário pode fechar a tela de cadastro.
+	
+\end{itemize}
+}
+%Frequência de Ocorrencia
+{Aproximadamente 1 vez por minuto.}
+%Problemas em Aberto
+{
+
+}
+
+%-----------------------------------------------------------
+
+\casoDeUso
+%Identificador
+{UC2}
+%Nome
+{Redefinir Senha}
+%Ator Principal
+{Usuário}
+%Interessados
+{
+\begin{itemize}
+	\item Usuário: deseja redefinir sua senha do EstatísticSI.	
+\end{itemize}
+
+}
+%Pré-Condições
+{Ter um e-mail válido.}
+%Pós-condições
+{Dados são enviados para o servidor.}
+%Fluxo Básico
+{
+\begin{itemize}
+	\item Usuário preenche os campos nova senha e confirme a nova senha como mostra a Figura (falta o documento dos protótipos); 
+	\item Usuário clica no botão \textit{“Salvar”};	
+	\item O usuário agora poderá utilizar a nova senha que foi redefinida.
+			
+\end{itemize}
+}
+%Fluxo Alternativo
+{
+\begin{itemize}
+	\item Usuário preenche o campo de confirmação da nova senha com dados diferente do campo senha e precisa ser notificado;
+	\item Eventuais problemas no servidor podem impedir o envio de dados, sendo preciso notificar o usuário sobre;
+	\item Usuário clica no botão \textit{“Cancelar”} e a senha não será redefinida;
+	\item Usuário pode fechar a tela de redefinição de senha.
+	
+\end{itemize}
+}
+%Frequência de Ocorrencia
+{Quanto o usuário idendificar a necessidade de alterar a senha.}
+%Problemas em Aberto
+{
+
+}
+
+%-----------------------------------------------------------
+
+\casoDeUso
+%Identificador
+{UC3}
+%Nome
+{Contato}
+%Ator Principal
+{Usuário}
+%Interessados
+{
+\begin{itemize}
+	\item Usuário: deseja entra em contato com EstatísticaSI.	
+\end{itemize}
+
+}
+%Pré-Condições
+{Acessar o site EstatísticSI.}
+%Pós-condições
+{Dados são enviados para o servidor.}
+%Fluxo Básico
+{
+\begin{itemize}
+	\item Usuário preenche os campos como mostra a \ref{figura:Contato}; 
+	\item Usuário acionar no botão \textit{“Enviar”};	
+
+\end{itemize}
+}
+%Fluxo Alternativo
+{
+\begin{itemize}
+	\item Usuário preenche os campos de nome, e-mail, mensagem;
+	\item Usuário seleciona uma das opções da categoria \textit{“Eu sou”};
+	\item Usuário escreve a mensagem que deseja e enviar;
+	\item Usuário aciona no campo selecionar arquivo e o usuário irá anexa um arquivo com a mensagem;
+	\item Usuário aciona em enviar e a mensagem será enviada.
+	
+\end{itemize}
+}
+%Frequência de Ocorrencia
+{Quando o usuário idendificar a necessidade de enviar uma mensagem.}
+%Problemas em Aberto
+{
+
+}
+
+%----------------------------------------------------------
+
+\casoDeUso
+%Identificador
+{UC4}
+%Nome
+{Recuperar senha}
+%Ator Principal
+{Usuário}
+%Interessados
+{
+\begin{itemize}
+	\item Usuário: deseja recuperar a senha.	
+\end{itemize}
+
+}
+%Pré-Condições
+{Acessar o site EstatísticSI.}
+%Pós-condições
+{Dados são enviados para o servidor.}
+%Fluxo Básico
+{
+\begin{itemize}
+	\item Usuário acessa na pagina do login como mostra a Figura\ref{figura:login_final}; 
+	\item Usuário seleciona o botão \textit{“Esqueceu a senha”};	
+
+\end{itemize}
+}
+%Fluxo Alternativo
+{
+\begin{itemize}
+
+	\item Quando o usuário acessa o EstatísticSI;
+	\item O sistema exibe a página de longin como mostra a Figura\ref{figura:recuperar_senha};
+	\item Usuário acionar o botão  
+	\item Usuário preenche o campo  e-mail;
+	\item Usuário seleciona o botão    	  \textit{“Esqueceu Senha”};
+	\item O sistema irá redirecionar o usuário para página recuperar senha como mostra a Figura\ref{figura:recuperar_senha};
+	\item Usuário preenche o campo com email cadastrado no sistema; 
+	\item O sistema enviará ao usuário um email com    um link;
+	\item o usuário acessa o link onde irá gerar uma nova senha;
+	
+\end{itemize}
+}
+%Frequência de Ocorrencia
+{Quando o usuário não estiver conseguindo acessar sua conta no EstatísticSI .}
+%Problemas em Aberto
+{
+
+}
+
+
+%----------------------------------------------------------
+\casoDeUso
+%Identificador
+{UC5}
+%Nome
+{Fazer Login}
+%Ator Principal
+{Usuário}
+%Interessados
+{
+\begin{itemize}
+	\item Usuário: deseja Fazer Login.	
+\end{itemize}
+
+}
+%Pré-Condições
+{Nenhuma.}
+%Pós-condições
+{Dados são enviados para o servidor.}
+%Fluxo Básico
+{
+\begin{itemize}
+	\item Usuário acessa na pagina inicial do sistema como mostra a Figura\ref{figura:login_final}; 
+	\item Usuário preenche o campo  e-mail e senha;
+	\item Usuário seleciona o botão    	  \textit{“LOGIN”};;
+\end{itemize}
+}
+%Fluxo Alternativo
+{
+\begin{itemize}
+
+	\item Quando o usuário acessa o EstatísticSI;
+	\item O sistema exibe a página de login como mostra a Figura\ref{figura:login_final};
+	\item Usuário preenche o campo  e-mail;
+	\item Usuário preenche o campo senha;
+	\item Usuário aciona o botão LOGIN;
+	\item O sistema irá redirecionar o usuário para página inicial como mostra a Figura\ref{figura:perfil_estatisticSI};
+	
+\end{itemize}
+}
+%Frequência de Ocorrencia
+{Quando o usuário desejar acessar o EstatísticSI .}
+%Problemas em Aberto
+{
+
+}
+
+%----------------------------------------------------------

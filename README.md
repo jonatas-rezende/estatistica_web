@@ -1,1 +1,1 @@
-# estatistica_web
+Software estatístico

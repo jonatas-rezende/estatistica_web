@@ -1,0 +1,7 @@
+\select@language {brazil}
+\contentsline {section}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{2}
+\contentsline {section}{\numberline {2}Por que JSON?}{2}
+\contentsline {subsection}{\numberline {2.1}Compara\IeC {\c c}\IeC {\~a}o JSON e XML}{2}
+\contentsline {section}{\numberline {3}Como utilizar o JSON?}{3}
+\contentsline {section}{\numberline {4}Como fazer a intera\IeC {\c c}\IeC {\~a}o do R com o JSON?}{3}
+\contentsline {section}{\numberline {5}Como fizemos?}{4}

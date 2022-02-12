@@ -1,0 +1,7 @@
+http://www.chartjs.org/samples/latest/charts/scatter/multi-axis.html
+http://www.chartjs.org/samples/latest/charts/pie.html
+http://www.chartjs.org/samples/latest/charts/line/basic.html
+http://www.chartjs.org/samples/latest/scales/logarithmic/scatter.html
+http://www.chartjs.org/samples/latest/scales/linear/step-size.html
+http://www.chartjs.org/samples/latest/legend/point-style.html
+http://www.chartjs.org/samples/latest/scriptable/bubble.html

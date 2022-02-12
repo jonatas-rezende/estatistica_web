@@ -1,0 +1,163 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[brazil]{babel}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{url}
+\lstset{numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt}
+\RequirePackage{graphicx}
+\title{DIC ANOVA}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\begin{document}
+\begin{titlepage}
+
+\begin{center}
+\begin{figure}[htb]
+		
+		\label{figura:LogoIF}
+	
+		\centering
+		\includegraphics[width=6cm]{logo.png} 
+\end{figure}
+
+
+Instituto Federal Goiano - Campus Ceres\\
+Bacharelado em Sistemas de Informação\\\vspace{0.5cm}
+José Gilvan Jacinto Júnior\\
+Maciele Xavier Rodrigues\\
+Marcos Antonio Arriel Rodrigues\\
+Thalia Santos de Santana\\
+Willian Wallace de Matteus Silva\\\vspace{6.5cm}
+
+\textit{\textbf{\Large{DIC com ANOVA}}}\\\vspace{10.5cm}
+
+Outubro\\
+2017\\
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+\begin{center}
+\textbf{\Large{DIC com ANOVA}}\\\vspace{0.5cm}
+\end{center}
+\section{O que é?}%GGN
+
+Em prol da realização de qualquer pesquisa, de modo geral, objetivando a experimentação, deve-se ter em mente dois conceitos: repetição e aleatoriedade. A partir destes, pode-se realizar um bom planejamento experimental. Acerca dos testes paramétricos, que levam por relevância a distribuição de Gauss (ou normal), um teste muito difundido refere-se ao teste F, muito comumente chamado de ANOVA. Esse teste depende muito do delineamento experimental, seja DIC (Delineamento Inteiramente Casualizado), seja DBC (Delineamento em Blocos ao Acaso).
+
+Para a ANOVA, realiza-se a análise de variância, verificando se a variância em questão é do tratamento ou de fato um possível erro. Assim, faz estimativas desta dado o quadrado médio. Acerca do DIC, é visto como um dos mais simples dos delineamentos, visto que nele os tratamentos se distribuem ao acaso em todas as unidades experimentais e o número de repetições por tratamento pode ser igual ou diferente, enfocando assim em repetição/casualidade.
+
+Vale ressaltar que para tanto, é de extrema importância que o meio seja uniforme para todo o processo de experimentação, já que caso contrário, recomenda-se o DBC, para controle em blocos. Ademais, o DIC faz-se muito usado em situações como estudos de métodos, técnicas de trabalhos em laboratório, ensaios de vegetação e até mesmo, experimentações animais, porém, não limita-se aos mesmos. 
+
+\section{Exemplo}%GGN
+
+Para entendê-lo, segue abaixo um exemplo inicial e quase literal, retirado da apostila de Estatística Experimental – Medicina Veterinária, da Faculdade de Ciências Agrárias e Veterinárias, Campus de Jaboticabal – SP, pelo professor Gener Tadeu Pereira, no 2º semestre de 2013.
+
+“Em um estudo do efeito da glicose na liberação de insulina, 12 espécies de tecido pancreático idênticas foram subdivididas em três grupos de 4 espécies cada uma. Três níveis (Baixo - Tratamento 1, Médio Tratamento - 2 e Alto Tratamento - 3) de concentrações de glicose foram aleatoriamente designados aos três grupos, e cada espécie dentro de cada grupo foi tratado com o nível de concentração de glicose sorteado a eles (Figura 1). Este é um estudo experimental com 12 unidades experimentais (amostras de tecido pancreático) e k = 3 tratamentos. Cada tratamento é um nível de fator simples: concentração de glicose. Existem 4 repetições para cada tratamento. Os dados, quantidade de insulina liberada pelo tecido pancreático podem ser considerados como três amostras aleatórias, cada uma com r = 4 repetições, ou de tamanho r = 4 sorteadas de três populações. Abaixo tem-se a quantidade de insulina liberada pelos tecidos pancreáticos amostrados (Figura 2).”
+
+\begin{figure}[htb!]
+\caption{Espécies de tecido pancreático em seus grupos específicos.}
+\label{figura:1}
+	
+\centering
+\includegraphics[width=10cm, height=10cm]{recursos/1.png} 
+\end{figure}
+
+\begin{figure}[h]
+\caption{Quantidade de insulina liberada pelos tecidos pancreáticos.}
+\label{figura:2}
+	
+\centering
+\includegraphics[width=16cm, height=3cm]{recursos/2.png} 
+\end{figure}
+
+Para realização desse teste, são necessárias várias expressões, como: Fonte de Variação, Grau de Liberdade, Soma de Quadrados, Quadrado Médio, Valor F Calculado e afins, gerando o Quadro da análise de variância (ANOVA). 
+
+De acordo com tal ramo da estatística, infere-se que:
+\begin{itemize}
+\item Fc $<$ Ft: Aceita-se H0 (não significativo)
+\item Fc $>$ Ft: Rejeita-se H0 (é significativo)
+\end{itemize}
+
+Onde:
+	
+Fc corresponde a  (Valor F Calculado) e Ft (Valor F Tabelado), usados para fim de comparação e poder afirmar acerca de tratamentos iguais ou diferentes, muitas vezes demonstrados com letras indicativas.
+	
+Uma forma de realizar o teste F é fazendo uso do \textit{software} R, sistema livre para cálculo, gráficos e análise estatística. O exemplo acima seria feito em R do seguinte modo abaixo:\\\vspace{0.1cm}
+	
+\lstinputlisting{codigos/dic1.r}\\\vspace{0.3cm}
+
+O resultado deste código é apontado na Figura 3:
+
+\begin{figure}[h]
+\caption{Quadro da ANOVA apresentado.}
+\label{figura:3}
+	
+\centering
+\includegraphics[width=12cm, height=3cm]{recursos/3.png} 
+\end{figure}
+
+Além disso, tal script oferece gráficos \textit{Box Plot} (Diagrama de Caixa), os quais fornecem uma comparação visual entre 2 ou mais grupos, verificando a distribuição dos dados e inclusive, ajudando na visualização dos possíveis outliers. Ainda, o símbolo * na frente do valor de p faz referência ao código de significância fornecido pelo R. 
+
+O autor da apostila ainda traz uma nova forma para visualização dos dados, visto que o código acima não fornece resultados para a fonte de variação do Total. Assim, outro modo é realizar a obtenção do quadro com a função \textit{crd( )} do pacote \textit{ExpDes}, conforme códigos abaixo:\\\vspace{0.1cm}
+
+\lstinputlisting{codigos/extensao.r}\\\vspace{0.3cm}
+
+O resultado deste código é apontado na Figura 4:
+
+\begin{figure}[h]
+\caption{Quadro da ANOVA apresentado com Fonte de Variação do Total.}
+\label{figura:3}
+	
+\centering
+\includegraphics[width=12cm, height=4cm]{recursos/4.png} 
+\end{figure}
+
+Portanto, a partir do exemplo apresentado, pode-se concluir que rejeitamos H0 e que a quantidade de insulina liberada é diferente para pelo menos dois níveis de glicose.
+
+\section{Referências}
+\begin{enumerate}
+\item PEREIRA, J.D. \textbf{Estatística Experimental – Medicina Veterinária.} Disponível em: $<$http://www.fcav.unesp.br/Home/departamentos/cienciasexatas/
+genertadeupereira3955/apostila-estatistica-experimental-parte-i.pdf$>$. Acesso em: 25 de outubro de 2017.
+\end{enumerate}
+\end{document}

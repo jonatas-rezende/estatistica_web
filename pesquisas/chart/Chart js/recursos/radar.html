@@ -1,0 +1,44 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-sclate=1.0">
+	<title>Chart Js - Radar</title>
+</head>
+<body>
+	<!-- Inicia Canvas -> desenhar elementos graficos usando JS -->
+	<canvas class="radar-chart"></canvas>
+	
+	<!-- Include Chart Js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+	
+	<script>
+	var ctx = document.getElementsByClassName("radar-chart");
+	
+	//type, data e option
+		var myRadarChart = new Chart(ctx, {
+		type: 'radar',
+		data: {
+			labels: ['Facebook', 'Twitter', 'YouTube', 'GitHub', 'Vimeo', 'Orkut'],
+		datasets: [{
+			label: "Taxa de cliques - 2017",
+			data: [20, 10, 4, 2, 9, -4],
+			borderWidth: 2,
+			borderColor: 'rgba(77,166,253,0.85)',
+			},
+			
+			{
+			label: "Taxa de clique em propagandas - 2017",
+			data: [35, 7, 1, 7, -10, -6],
+			borderWidth: 2,
+			borderColor: 'rgba(11,56,193,0.99)',
+			},
+			
+		]
+		}
+	});
+	
+	</script>
+	
+	
+</body>
+</html>

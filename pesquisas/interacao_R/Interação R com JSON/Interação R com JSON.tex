@@ -1,0 +1,178 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[brazil]{babel}
+\usepackage{indentfirst}
+\usepackage{url}
+\usepackage{listings}
+\RequirePackage{graphicx}
+\title{Interação R com JSON}
+\author{Adallberto Lucena Moura \and Andrey Silva Ribeiro \and Anny Karoliny Moraes Ribeiro \and Brener Gomes de Jesus \and Daniel Moreira Cardoso \and Davi Ildeu de Faria\and Eduardo de Oliveira Silva \and Gusttavo Nunes Gomes \and Jônatas de Souza Rezende}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{color}
+
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\usepackage{listings}
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{\$\$},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\begin{document}
+\begin{titlepage}
+
+
+\begin{center}
+\begin{figure}[htb]
+		
+		\label{figura:LogoIF}
+	
+		\centering
+		\includegraphics[width=6cm]{logo.png} 
+\end{figure}
+
+
+Instituto Federal Goiano - Campus Ceres\\
+Bacharelado em Sistemas de Informação\\
+Prof. Me. Ronneesley Moura Teles\\\vspace{0.2cm}
+Adallberto Lucena Moura \\
+Andrey Silva Ribeiro \\
+Anny Karoliny Moraes Ribeiro \\
+Brener Gomes de Jesus \\
+Daniel Moreira Cardoso \\
+Davi Ildeu de Faria \\
+Eduardo de Oliveira Silva \\
+Gusttavo Nunes Gomes \\
+Jônatas de Souza Rezende \\
+
+
+\vspace{5.0cm}
+
+\textit{\textbf{\Large{Interação R com JSON}}}\\\vspace{0.5cm}
+\vspace{9.5cm}
+
+Outubro\\
+2017\\
+\end{center}
+\end{titlepage}
+
+
+
+\tableofcontents
+
+\newpage
+\begin{center}
+\textbf{\Large{Interação R com JSON}}\\\vspace{0.5cm}
+\end{center}
+
+\section{Introdução}
+
+Para propor formas de interação do Java com o R, primeiro precisamos entender o que é JSON e XML. XML, do inglês, eXtensible Markup Language e JSON, JavaScript Object Notation. Ambos, são formatos serializadores de dados organizados de forma hierarquica, como textos, banco de dados, ou desenhos vetoriais.
+
+Nessa pesquisa apresentaremos o JSON, como escolha para realizar essa interação.
+
+\section{Por que JSON?}
+Após pesquisarmos sobre ambas as tecnlogias, principalmente em fóruns como Stack Overflow, GUJ e sites como GeekHunter, podemos observar que atualmente, o JSON vem sendo bastante utilizado. E para responder à dúvida de qual é melhor em determinada situação, na maioria dos tópicos encontrados sobre esse assunto, é comentado que para um projeto que possui um banco de dados relacional e bem estruturado, o JSON é a melhor opção. Por ser leve e bem intuitivo. Assim como no site oficial do JSON \url{http://json.org/json-pt.html}: "Para seres humanos, é fácil de ler e escrever. Para máquinas, é fácil de interpretar e gerar. JSON é em formato texto e completamente independente de linguagem, pois usa convenções que são familiares às linguagens C e familiares, incluindo C++, C\#, Java, JavaScript, Perl, Python e muitas outras. Estas propriedades fazem com que JSON seja um formato ideal de troca de dados."
+
+\subsection{Comparação JSON e XML}
+Código em XML: 
+\lstinputlisting{recursos/XML.xml}
+
+Código em JSON: 
+\lstinputlisting{recursos/JSON.json}
+
+
+\section{Como utilizar o JSON?}
+Para gravar arquivos JSON em java, podemos utilizar uma diversidade de formas, porém após pesquisas em fóruns já citados, o GSON foi o mais recomendado. GSON nada mais é que uma biblioteca do Google, open source, inclusive disponível no Github em: \url{https://github.com/google/gson}.
+
+Mas por que utilizar o GSON e não o JSON nativo?
+
+O principal objetivo do GSON é: 
+\begin{itemize}
+\item Prover uma interface simples para ler e exportar no formato JSON;
+\item Permitir que objetos pré-existentes e que não possam ser alterados sejam convertidos para e partir de JSON;
+\item Suporte ao generics do Java;
+\item Representação customizada de objetos;
+\item Suporte a tipos complexos de objetos.
+\end{itemize}
+
+Assim, eliminando a dificuldade do JSON para poucas linhas de código utilizando o GSON.
+
+Para se utilizar o GSON, é preciso importar a biblioteca GSON para o projeto, que está incluída no arquivo desta pesquisa, em bibliotecas. E com facilidade utilizar o mesmo:
+
+\lstinputlisting[language=Java]{recursos/GSON.java}
+
+
+\section{Como fazer a interação do R com o JSON?}
+Para utilizarmos o JSON no R, primeiramente precisamos instalar o pacote rjson, uma única vez com o código no console do R: 
+\lstinputlisting{recursos/rjson.R}
+
+Após isso é preciso dar o caminho do arquivo JSON para o R ler e armazenar como uma lista e calcular a mediana (exemplo que utilizamos).
+
+\lstinputlisting{recursos/calculo_mediana_usando_json.R}
+
+
+\section{Como fizemos?}
+Primeiro criamos uma classe para Valores, que serão os valores que o usuário irá informar.
+\lstinputlisting[language=Java]{recursos/Valor.java}
+
+A classe principal para ler esses valores e armazenar no JSON e chamar a classe referente ao sistema operacional utilizado
+
+\lstinputlisting[language=Java]{recursos/Aplicativo.java}
+
+E na classe Windows, executamos o comando que executa o R no terminal com o código que apresentamos e em seguida pega o retorno, o resultado da função, grava em um arquivo TXT e exibe no terminal de execução o resultado o nome e local que o arquivo com o resultado foi gravado.
+
+\lstinputlisting[language=Java]{recursos/Windows.java}
+
+\end{document}

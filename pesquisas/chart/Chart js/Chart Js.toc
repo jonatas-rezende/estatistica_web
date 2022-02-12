@@ -1,0 +1,9 @@
+\select@language {brazil}
+\contentsline {section}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{2}
+\contentsline {section}{\numberline {2}Tipos de gr\IeC {\'a}ficos}{2}
+\contentsline {section}{\numberline {3}Exemplos de gr\IeC {\'a}ficos implementados.}{4}
+\contentsline {subsection}{\numberline {3.1}Gr\IeC {\'a}fico de linhas}{4}
+\contentsline {subsection}{\numberline {3.2}Gr\IeC {\'a}fico Polar}{5}
+\contentsline {subsection}{\numberline {3.3}Gr\IeC {\'a}fico Radar}{5}
+\contentsline {section}{\numberline {4}Vantagens}{6}
+\contentsline {section}{\numberline {5}Conclus\IeC {\~a}o}{7}

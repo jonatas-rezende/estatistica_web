@@ -1,0 +1,14 @@
+{
+  "nome": "zeno rocha - blog",
+  "url": "http://zenorocha.com",
+  "posts": [
+    {
+      "titulo": "do it! - as simple as you can",
+      "data": "13/04/2011"
+    },
+    {
+      "titulo": "hello world",
+      "data": "12/04/2011"
+    }
+  ]
+}

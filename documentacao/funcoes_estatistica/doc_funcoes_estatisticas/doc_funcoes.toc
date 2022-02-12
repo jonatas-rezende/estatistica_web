@@ -1,0 +1,5 @@
+\select@language {brazil}
+\contentsline {section}{\numberline {1}Objetivo geral}{2}
+\contentsline {section}{\numberline {2}Caracter\IeC {\'\i }sticas}{2}
+\contentsline {section}{\numberline {3}Fun\IeC {\c c}\IeC {\~o}es estat\IeC {\'\i }sticas}{2}
+\contentsline {section}{\numberline {4}Refer\IeC {\^e}ncias}{3}

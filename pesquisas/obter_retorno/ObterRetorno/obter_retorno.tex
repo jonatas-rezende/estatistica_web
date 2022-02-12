@@ -1,0 +1,246 @@
+\documentclass[14pt, a4paper]{article}
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+\definecolor{jpurple}{rgb}{0.5,0,0.35}
+% Configurando layout para mostrar codigos Java
+\usepackage{listings}
+\lstset{
+  language=Java,
+  basicstyle=\ttfamily\small, 
+  keywordstyle=\color{jpurple}\bfseries,
+  stringstyle=\color{red},
+  commentstyle=\color{verde},
+  morecomment=[s][\color{blue}]{/**}{*/},
+  extendedchars=true, 
+  showspaces=false, 
+  showstringspaces=false, 
+  numbers=left,
+  numberstyle=\tiny,
+  breaklines=true, 
+  backgroundcolor=\color{cyan!10}, 
+  breakautoindent=true, 
+  captionpos=b,
+  xleftmargin=0pt,
+  tabsize=4
+}
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[brazil]{babel}
+\usepackage{indentfirst}
+\usepackage{url}
+
+\RequirePackage{graphicx}
+\title{Class Runtime}
+\author{Andrey Silva Ribeiro \and Jônatas de Souza Rezende \and Lucas Pereira de Azevedo}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+
+\begin{document}
+
+\begin{titlepage}
+
+
+\begin{center}
+\begin{figure}[htb]
+		
+		\label{figura:LogoIF}
+	
+		\centering
+		\includegraphics[width=6cm]{logo.png} 
+\end{figure}
+
+
+Instituto Federal Goiano - Campus Ceres\\
+Bacharelado em Sistemas de Informação\\
+Prof. Me. Ronneesley Moura Teles\\\vspace{0.2cm}
+Andrey Silva Ribeiro \\
+Jônatas de Souza Rezende \\
+Lucas Pereira de Azevedo \\\vspace{7.0cm}
+
+\textit{\textbf{\Large{Obter retorno através do comando}}}\\\vspace{0.5cm}
+\textit{\textbf{\Large{Runtime.getRuntime().exec("comando")}}}\\\vspace{9.5cm}
+
+Outubro\\
+2017\\
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+\begin{center}
+\textbf{\Large{Runtime.getRuntime().exec("comando")}}\\\vspace{0.5cm}
+\end{center}
+\section{Como funciona?}%GGN
+
+A classe \textbf{Runtime} possui um método para fazer uma chamada ao sistema operacional e executar algum programa, que é o método \textbf{getRuntime().exec("comando")}. A mesma deve ser utilizada em conjunto com a classe \textbf{Process}.
+
+Aconselha-se que seja pouco utilizado, pois ele gera uma dependência em relação ao sistema operacional em questão, perdendo a portabilidade.
+
+\section{Código exemplo - Java.}%GGN
+
+\begin{lstlisting}
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Pegar_retorno {
+
+    public static void main(String[] args) throws Exception {
+        
+        try{
+
+            String resultado; 
+            
+            String n_arquivo = "resultado.txt";
+            
+            String comando = "CMD /C Rscript d:\\desvio_padrao.R";
+            
+            Process exec = Runtime.getRuntime().exec(comando);
+        
+            BufferedReader retorno = new BufferedReader(new InputStreamReader(exec.getInputStream()));
+          
+            while ((resultado = retorno.readLine()) != null){
+                FileWriter arquivo;
+				try {
+                    arquivo = new FileWriter(new File(n_arquivo));
+                    arquivo.write("Resultado da operacao: ");
+                    arquivo.write(resultado);
+                    arquivo.close();
+                    FileReader reader = new FileReader(n_arquivo);
+                    BufferedReader leitor = new BufferedReader(reader);
+                    while(leitor.ready()) {
+                            System.out.println(leitor.readLine());
+                    }
+                    reader.close();
+                    leitor.close();
+                    
+                } catch (IOException e) {
+                    System.err.println("Erro: " + e.toString());
+				} catch (Exception e) {
+                    System.err.println("Erro: " + e.toString());
+				}
+            }
+            
+            System.out.println("\nResultado gravado em resultado.txt\n");
+            retorno.close();
+            exec.destroy();
+        }
+        
+        catch(IOException exc){
+            System.err.println("Erro: " + exc.toString());
+        }
+    }        
+}
+\end{lstlisting}
+
+\section{Código exemplo - R}
+
+Abaixo segue o código contido no script do \textbf{software R} que será usado no comando para obtenção do retorno:
+
+\begin{lstlisting}
+x <- c(65, 72, 70, 72, 60, 67, 69, 68)
+ 
+sd(x)
+\end{lstlisting}
+
+Executando o script acima o resultado apresentado é o seguinte:
+
+\begin{lstlisting}
+[1] 3.97986
+\end{lstlisting}
+
+\section{Explicação do código.}
+
+\begin{enumerate}
+\item Importações necessárias para a execução do código Java:
+
+\begin{lstlisting}
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+\end{lstlisting}
+
+\item Declaração das variáveis.
+
+\begin{lstlisting}
+String resultado; 
+String n_arquivo = "resultado.txt";
+String comando = "CMD /C Rscript d:\\desvio_padrao.R";
+\end{lstlisting}
+
+\item O método \textbf{exec} retorna um \textbf{Process} onde é possível obter a saída do programa e enviar dados para entrada, dentre outros.
+
+\begin{lstlisting}
+Process exec = Runtime.getRuntime().exec(comando);
+\end{lstlisting}
+
+\item A classe \textbf{BufferedReader} serve para leitura de uma \textbf{InputStreamReader}, que por sua vez lê bytes e decodifica-os em caracteres, esses dados serão armazenados na variável \textbf{retorno}.
+        
+\begin{lstlisting}
+BufferedReader retorno = new BufferedReader(new InputStreamReader(exec.getInputStream()));
+\end{lstlisting}
+
+\item Se o retorno do método \textbf{exec} for diferente de nulo, a variável \textbf{resultado} recebe o valor que foi retornado, e a classe \textbf{FileWriter} que escreve dados em arquivos, pega esse retorno e salva no arquivo.
+
+\begin{lstlisting}          
+while ((resultado = retorno.readLine()) != null){
+	FileWriter arquivo;
+\end{lstlisting}                
+
+\item Especifica o que vai ser escrito no arquivo de destino, ainda dentro da condicional. Na linha 1 será criado ou usado o arquivo, na linha 2 o texto que será escrito no arquivo, na linha 3 o resultado obtido a ser salvo no arquivo e na linha 4 finaliza o arquivo.
+
+\begin{lstlisting}
+arquivo = new FileWriter(new File(n_arquivo));
+arquivo.write("Resultado da operacao: ");
+arquivo.write(resultado);
+arquivo.close();
+\end{lstlisting}                    
+
+\item A classe \textbf{FileReader} executa a leitura dos dados do arquivo, cria a variável \textbf{reader} e armazena os dados obtidos na variável criada.
+
+\begin{lstlisting}                    
+FileReader reader = new FileReader(n_arquivo);
+\end{lstlisting}                                        
+
+\item A classe \textbf{BufferedReader} instancia a variável \textbf{leitor} onde armazena os dados lidos anteriormente. Na linha 3 é impresso na tela os valores obtidos enquanto tiver dados armazenados, na linha 5 encerra a variável \textbf{reader} e na linha 6 encerra a variável \textbf{leitor}.
+
+\begin{lstlisting}
+BufferedReader leitor = new BufferedReader(reader);
+while(leitor.ready()) {
+	System.out.println(leitor.readLine());
+}
+reader.close();
+leitor.close();
+\end{lstlisting}                                        
+
+\item Após toda a execução do código, apresenta na tela informando o nome do arquivo em que foi gravado os dados. Na linha 2 finaliza a variável \textbf{retorno} e na linha 3 encerra o método \textbf{exec}.
+
+\begin{lstlisting}                    
+System.out.println("\nResultado gravado em resultado.txt\n");
+retorno.close();
+exec.destroy();
+\end{lstlisting}                    
+
+\end{enumerate}
+
+\section{Referências}
+\begin{enumerate}
+
+\item ORACLE. \textbf{Docs Oracle.} Disponível em: $<$https://docs.oracle.com/javase/7/docs/api/allclasses-noframe.html$>$. Acesso em: 5 de outubro de 2017.
+
+\end{enumerate}
+
+\end{document}
+
+
+\end{document}
